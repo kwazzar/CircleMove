@@ -8,8 +8,8 @@
 import UIKit
 
  class ObstacleView: UIView {
-    var obstacleHeight: CGFloat = 10.0
-    var obstacleWidth: CGFloat = UIScreen.main.bounds.width
+   private var obstacleHeight: CGFloat = 10.0
+   private var obstacleWidth: CGFloat = UIScreen.main.bounds.width
 
     init(yPos: CGFloat) {
         super.init(frame: CGRect(x: UIScreen.main.bounds.width, y: yPos, width: obstacleWidth, height: obstacleHeight))
@@ -20,12 +20,4 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updatePosition() {
-        var frame = self.frame
-        frame.origin.x -= 1
-        if frame.origin.x + frame.width < 0 {
-            frame.origin.x = UIScreen.main.bounds.width
-        }
-        self.frame = frame
-    }
 }

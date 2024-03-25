@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainVC.swift
 //  CircleMove
 //
 //  Created by Quasar on 21.03.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
- class ViewController: UIViewController {
+class MainVC: UIViewController {
     var circleView = CircleView()
     var obstacleViews: [ObstacleView] = []
     var collisionCount = 0
@@ -23,7 +23,7 @@ import UIKit
         setupCollisionCountLabel()
     }
 
-     
+
     // This function checks if the circle has collided with any of the obstacles
     func checkCollision() {
         let circleFrame = circleView.frame
@@ -33,7 +33,7 @@ import UIKit
             }
         }
     }
-//MARK: createObstacles
+    //MARK: createObstacles
     func createObstacles() {
         let obstacleHeight: CGFloat = 10.0
 
@@ -68,7 +68,7 @@ import UIKit
             obstacle.frame = frame
         }
     }
-//MARK: Count Collision
+    //MARK: Count Collision
     private func handleCollision() {
         if let lastCollisionTime = lastCollisionTime, Date().timeIntervalSince(lastCollisionTime) < 3 {
             return
@@ -86,7 +86,7 @@ import UIKit
         lastCollisionTime = Date()
     }
 
-//MARK: AlertController
+    //MARK: AlertController
     private func showAlertToResetScreen() {
         let alert = UIAlertController(title: "Попередження", message: "Необхідно перезапустити екран", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -99,15 +99,6 @@ import UIKit
         }))
         self.present(alert, animated: true, completion: nil)
         invalidateDisplayLink()
-    }
-//MARK: ResetScreen
-    @objc func resetScreen() {
-        removeAllObstacles()
-        circleView.updateCircle()
-        didCollide()
-        invalidateDisplayLink()
-        createObstacles()
-        setupDisplayLink()
     }
 
     private func removeAllObstacles() {
@@ -131,18 +122,7 @@ import UIKit
         updateCollisionCountLabel()
     }
 
-    @objc func update() {
-         updateObstaclePositions()
-        checkCollision()
-    }
 
-    @objc func increaseCircleSize() {
-        circleView.changeSize(by: 10)
-    }
-
-    @objc func decreaseCircleSize() {
-        circleView.changeSize(by: -10)
-    }
 
     func createButton(title: String, action: Selector, position: CGPoint) -> UIButton {
         let button = UIButton(frame: CGRect(x: position.x, y: position.y, width: 40, height: 40))
@@ -156,13 +136,13 @@ import UIKit
 }
 
 //MARK: Setup
-extension ViewController {
+extension MainVC {
 
     private func setupCircleView() {
-                circleView = CircleView()
-                circleView.center = self.view.center
-                self.view.addSubview(circleView)
-     }
+        circleView = CircleView()
+        circleView.center = self.view.center
+        self.view.addSubview(circleView)
+    }
 
     private func setupCollisionCountLabel() {
         collisionCountLabel = UILabel(frame: CGRect(x: 40, y: 40, width: 200, height: 20))
@@ -172,9 +152,9 @@ extension ViewController {
     }
 
     private func setupObstacles() {
-            self.createObstacles()
-                self.setupDisplayLink()
-                self.checkCollision()
+        self.createObstacles()
+        self.setupDisplayLink()
+        self.checkCollision()
     }
 
     private func setupButtons() {
@@ -186,4 +166,30 @@ extension ViewController {
         self.view.addSubview(minusButton)
         self.view.addSubview(resetButton)
     }
+}
+//MARK: Objc methods
+@objc extension MainVC {
+    func update() {
+        updateObstaclePositions()
+        checkCollision()
+    }
+
+    func increaseCircleSize() {
+        circleView.changeSize(by: 10)
+    }
+
+    func decreaseCircleSize() {
+        circleView.changeSize(by: -10)
+    }
+
+    //MARK: ResetScreen
+    func resetScreen() {
+        removeAllObstacles()
+        circleView.updateCircle()
+        didCollide()
+        invalidateDisplayLink()
+        createObstacles()
+        setupDisplayLink()
+    }
+
 }

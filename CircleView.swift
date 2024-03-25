@@ -1,5 +1,5 @@
 //
-//  Circle.swift
+//  CircleView.swift
 //  CircleMove
 //
 //  Created by Quasar on 21.03.2024.
@@ -7,11 +7,11 @@
 
 import UIKit
 
- class CircleView: UIView {
+class CircleView: UIView {
     var circleRadius: CGFloat = 50.0
-    let labelCircle = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-    let initialCircleRadius: CGFloat = 50
-    let initialFontSize: CGFloat = 14
+    private let labelCircle = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    private let initialCircleRadius: CGFloat = 50
+    private let initialFontSize: CGFloat = 14
 
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: circleRadius * 2, height: circleRadius * 2))
@@ -22,7 +22,7 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
 
-     func setupCircleView() {
+    func setupCircleView() {
         self.center = self.superview?.center ?? CGPoint.zero
         self.layer.cornerRadius = circleRadius
         self.backgroundColor = .red
