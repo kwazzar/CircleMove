@@ -1,5 +1,5 @@
 //
-//  Obstacle.swift
+//  ObstacleView.swift
 //  CircleMove
 //
 //  Created by Quasar on 22.03.2024.

@@ -122,8 +122,6 @@ class MainVC: UIViewController {
         updateCollisionCountLabel()
     }
 
-
-
     func createButton(title: String, action: Selector, position: CGPoint) -> UIButton {
         let button = UIButton(frame: CGRect(x: position.x, y: position.y, width: 40, height: 40))
         button.setTitle(title, for: .normal)
@@ -152,9 +150,9 @@ extension MainVC {
     }
 
     private func setupObstacles() {
-        self.createObstacles()
-        self.setupDisplayLink()
-        self.checkCollision()
+        createObstacles()
+        setupDisplayLink()
+        checkCollision()
     }
 
     private func setupButtons() {
