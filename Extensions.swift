@@ -14,7 +14,7 @@ extension UIView {
         rotateAnimation.fromValue = 0.0
         rotateAnimation.toValue = CGFloat(Double.pi * 2.0)
         rotateAnimation.duration = duration
-        rotateAnimation.repeatCount = .greatestFiniteMagnitude // Repeat indefinitely
+        rotateAnimation.repeatCount = .greatestFiniteMagnitude // Повторювати до нескінченності
 
         if let delegate: AnyObject = completionDelegate {
             rotateAnimation.delegate = (delegate as! any CAAnimationDelegate)

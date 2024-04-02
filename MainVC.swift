@@ -23,8 +23,7 @@ class MainVC: UIViewController {
         setupCollisionCountLabel()
     }
 
-
-    // This function checks if the circle has collided with any of the obstacles
+    // TЦя функція перевіряє, чи зіткнулося коло з будь-якою з перешкод
     func checkCollision() {
         let circleFrame = circleView.frame
         for obstacleView in obstacleViews {
@@ -33,6 +32,7 @@ class MainVC: UIViewController {
             }
         }
     }
+
     //MARK: createObstacles
     func createObstacles() {
         let obstacleHeight: CGFloat = 10.0
@@ -42,7 +42,7 @@ class MainVC: UIViewController {
         for _ in 1...2 {
             var randomYPos = CGFloat(arc4random_uniform(UInt32(self.view.frame.height - obstacleHeight)))
 
-            // Проверка, пересекается ли область препятствия с областью кнопок
+            // Перевірка, чи перетинається область перешкоди з областю кнопок
             while buttonArea.intersects(CGRect(x: 0, y: randomYPos, width: self.view.frame.width, height: obstacleHeight)) {
                 randomYPos = CGFloat(arc4random_uniform(UInt32(self.view.frame.height - obstacleHeight)))
             }
@@ -137,7 +137,6 @@ class MainVC: UIViewController {
 extension MainVC {
 
     private func setupCircleView() {
-        circleView = CircleView()
         circleView.center = self.view.center
         self.view.addSubview(circleView)
     }
